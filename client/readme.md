@@ -49,3 +49,41 @@ obtemVolume() {
 }
 ```
 
+* ## Encapsulamento
+### Convenção
+No javascript ainda não podemos definir privacidades nas propriedades de forma que funcione, a nao ser que de forma apenas convencional, utilizando '_'(underline) logo depois do `this.`:
+```js
+this._data = new Date();
+```
+E assim (por convenção) os mesmos só PODERÃO ser acessados pelos metodos da propria classe.
+Mas nada me impede AINDA de alterar o valor de quantidade que deveria ser `privado`:
+```js
+n1._quantidade = 1000
+```
+Para isso utilizaremos o `Object.freeze()` dentro do construtor passando o `this` como objeto congelado.
+``` js
+class Negociacao {
+   constructor(data, quantidade, valor) {
+      this.data = data; // recebe new Date()
+      this.quantidade = quantidade; // recebe 2
+      this.valor = valor; // recebe 200
+      Object.freeze(this);
+   }
+}
+```
+
+
+* ### Get
+
+A criação dos nossos getters (metodos que retornarão o valor das propriedades) pode ser definida da seguinte forma:
+```js
+get data() {
+   return this._data;
+}
+```
+Utilizando assim da propriedade `get` forçaremos ao ser apenas de leitura, e podemos chama-lo usando:
+```js
+var n1 = new Negociacao(new Date, 2, 200);
+n1.quantidade; // 200
+```
+Note que fica aparente a sensação de que estamos chamando uma propriedade, mas por baixo dos panos estamos invocando o metodo `get quantidade() {...}`.
