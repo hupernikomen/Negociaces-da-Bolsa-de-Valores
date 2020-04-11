@@ -81,9 +81,9 @@ get data() {
    return this._data;
 }
 ```
-Utilizando assim da propriedade `get` forçaremos ao ser apenas de leitura, e podemos chama-lo usando:
+Utilizando assim da propriedade `get` forçaremos a ser apenas um metodo de leitura, e podemos chama-lo usando:
 ```js
 var n1 = new Negociacao(new Date, 2, 200);
 n1.quantidade; // 200
 ```
-Note que fica aparente a sensação de que estamos chamando uma propriedade, mas por baixo dos panos estamos invocando o metodo `get quantidade() {...}`.
+Note que fica aparente a sensação de que estamos chamando uma propriedade,quando na verdade estamos invocando o metodo `get quantidade() {...}`.
